@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.*
+import androidx.navigation.fragment.findNavController
 import com.example.mycomposition.R
 import com.example.mycomposition.databinding.FragmentGameBinding
 import com.example.mycomposition.databinding.FragmentWelcomeBinding
@@ -120,10 +121,10 @@ class GameFragment : Fragment() {
     }
 
     private fun launchGameFinishedFragment(gameResult: GameResult) {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.main_container, GameFinishedFragment.newInstance(gameResult))
-            .addToBackStack(null)
-            .commit()
+        val args = Bundle().apply {
+            putParcelable(GameFinishedFragment.GAME_RESULT, gameResult)
+        }
+        findNavController().navigate(R.id.action_gameFragment_to_gameFinishedFragment, args)
     }
 
     private fun parseArgs() {
@@ -135,7 +136,7 @@ class GameFragment : Fragment() {
 
     companion object {
 
-        private const val KEY_LEVEL = "level"
+        const val KEY_LEVEL = "level"
         const val NAME = "GameFragment"
 
         fun newInstance(level: Level): GameFragment {
