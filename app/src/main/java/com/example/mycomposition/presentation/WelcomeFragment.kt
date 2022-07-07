@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.mycomposition.R
 import com.example.mycomposition.databinding.FragmentWelcomeBinding
-import com.example.mycomposition.presentation.ChooseLevelFragment.Companion.NAME
 import java.lang.RuntimeException
 
 class WelcomeFragment : Fragment() {
