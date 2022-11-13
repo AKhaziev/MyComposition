@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.mycomposition.R
@@ -45,20 +43,21 @@ class GameFinishedFragment : Fragment() {
     }
 
     private fun bindViews() {
+        binding.gameResult =args.gameResult
         with(binding) {
             emojiResult.setImageResource(getSmileResId())
-            tvRequiredAnswers.text = String.format(
-                getString(R.string.required_score),
-                args.gameResult.gameSettings.minCountOfRightAnswers
-            )
-            tvScoreAnswers.text = String.format(
-                getString(R.string.score_answers),
-                args.gameResult.countOfRightAnswers
-            )
-            tvRequiredPercentage.text = String.format(
-                getString(R.string.required_percentage),
-                args.gameResult.gameSettings.minPercentOfRightAnswers
-            )
+//            tvRequiredAnswers.text = String.format(
+//                getString(R.string.required_score),
+//                args.gameResult.gameSettings.minCountOfRightAnswers
+//            )
+//            tvScoreAnswers.text = String.format(
+//                getString(R.string.score_answers),
+//                args.gameResult.countOfRightAnswers
+//            )
+//            tvRequiredPercentage.text = String.format(
+//                getString(R.string.required_percentage),
+//                args.gameResult.gameSettings.minPercentOfRightAnswers
+//            )
             tvScorePercentage.text = String.format(
                 getString(R.string.score_percentage),
                 getPercentOfRightAnswers()
@@ -99,7 +98,7 @@ class GameFinishedFragment : Fragment() {
 
     companion object {
 
-        const val GAME_RESULT = "game_result"
+        private const val GAME_RESULT = "game_result"
 
         fun newInstance(gameResult: GameResult): GameFinishedFragment {
             return GameFinishedFragment().apply {
